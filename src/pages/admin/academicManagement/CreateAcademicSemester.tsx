@@ -1,10 +1,11 @@
-import { Button, Col, Flex } from 'antd';
-import PHForm from '../../../components/form/PHForm';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import PHForm from '../../../components/form/PHForm';
+import { Button, Col, Flex } from 'antd';
 import PHSelect from '../../../components/form/PHSelect';
 import { semesterOptions } from '../../../constants/semester';
 import { monthOptions } from '../../../constants/global';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { academicSemesterSchema } from '../../../schemas/academicManagement.schema';
 import { useAddAcademicSemesterMutation } from '../../../redux/features/admin/academicManagement.api';
 import { toast } from 'sonner';
@@ -31,6 +32,7 @@ const CreateAcademicSemester = () => {
       startMonth: data.startMonth,
       endMonth: data.endMonth,
     };
+
     try {
       const res = (await addAcademicSemester(semesterData)) as TResponse;
       console.log(res);
@@ -52,6 +54,7 @@ const CreateAcademicSemester = () => {
           <PHSelect label="Year" name="year" options={yearOptions} />
           <PHSelect label="Start Month" name="startMonth" options={monthOptions} />
           <PHSelect label="End Month" name="endMonth" options={monthOptions} />
+
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>
