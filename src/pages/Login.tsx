@@ -20,8 +20,8 @@ const Login = () => {
   // });
 
   const defaultValues = {
-    userId: 'A-0001',
-    password: 'securePass123',
+    userId: '2024030005',
+    password: 'student123',
   };
 
   const [login] = useLoginMutation();
@@ -44,7 +44,11 @@ const Login = () => {
 
       toast.success('Logged in successfully!', { id: toastId, duration: 2000 });
 
-      navigate(`/${user.role}/dashboard`);
+      if (res.data.needsPasswordChange) {
+        navigate('/change-password');
+      } else {
+        navigate(`/${user.role}/dashboard`);
+      }
     } catch (err) {
       toast.error('Something went wrong!', { id: toastId, duration: 2000 });
     }
